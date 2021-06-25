@@ -1,0 +1,87 @@
+
+
+CREATE TABLE [dbo].[Table]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
+    [Name] VARCHAR(50) NOT NULL, 
+    [JobDescription] VARCHAR(50) NOT NULL, 
+    [Number] NCHAR(10) NOT NULL, 
+    [Department] NCHAR(10) NULL
+)
+
+--------------Till Singleton---------------
+---------------Below for Simple Factory and Factory DP---------
+
+CREATE TABLE [dbo].[Employee] (
+    [Id]               INT          IDENTITY (1, 1) NOT NULL,
+    [Name]             VARCHAR (50) NOT NULL,
+    [JobDescription]   VARCHAR (50) NOT NULL,
+    [Number]           VARCHAR (50) NOT NULL,
+    [Department]       VARCHAR (50) NOT NULL,
+    [HourlyPay]        DECIMAL (18) NOT NULL,
+    [Bonus]            DECIMAL (18) NOT NULL,
+    [EmployeeTypeID]   INT          NOT NULL,
+    [HouseAllowance]   DECIMAL (18) NULL,
+    [MedicalAllowance] DECIMAL (18) NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_Employee_Employee_Type] FOREIGN KEY ([EmployeeTypeID]) REFERENCES [dbo].[Employee_Type] ([Id])
+);
+
+CREATE TABLE [dbo].[Employee_Type] (
+    [Id]           INT           IDENTITY (1, 1) NOT NULL,
+    [EmployeeType] VARCHAR (150) NOT NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+
+Make sure to refresh the models edmx
+
+---------Below for Abstract Factory-----------
+
+Update the Employee table.
+Added new column as [ComputerDetails]  
+
+CREATE TABLE [dbo].[Employee] (
+    [Id]               INT           IDENTITY (1, 1) NOT NULL,
+    [Name]             VARCHAR (50)  NOT NULL,
+    [JobDescription]   VARCHAR (50)  NOT NULL,
+    [Number]           VARCHAR (50)  NOT NULL,
+    [Department]       VARCHAR (50)  NOT NULL,
+    [HourlyPay]        DECIMAL (18)  NOT NULL,
+    [Bonus]            DECIMAL (18)  NOT NULL,
+    [EmployeeTypeID]   INT           NOT NULL,
+    [HouseAllowance]   DECIMAL (18)  NULL,
+    [MedicalAllowance] DECIMAL (18)  NULL,
+    [ComputerDetails]  VARCHAR (250) NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_Employee_Employee_Type] FOREIGN KEY ([EmployeeTypeID]) REFERENCES [dbo].[Employee_Type] ([Id])
+);
+
+---------------------------Facade Design Pattern---------------------
+
+Update the Employee table.
+Added new column as [SystemConfigurationDetails] 
+
+CREATE TABLE [dbo].[Employee] (
+    [Id]                         INT           IDENTITY (1, 1) NOT NULL,
+    [Name]                       VARCHAR (50)  NOT NULL,
+    [JobDescription]             VARCHAR (50)  NOT NULL,
+    [Number]                     VARCHAR (50)  NOT NULL,
+    [Department]                 VARCHAR (50)  NOT NULL,
+    [HourlyPay]                  DECIMAL (18)  NOT NULL,
+    [Bonus]                      DECIMAL (18)  NOT NULL,
+    [EmployeeTypeID]             INT           NOT NULL,
+    [HouseAllowance]             DECIMAL (18)  NULL,
+    [MedicalAllowance]           DECIMAL (18)  NULL,
+    [ComputerDetails]            VARCHAR (250) NULL,
+    [SystemConfigurationDetails] VARCHAR (500) NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_Employee_Employee_Type] FOREIGN KEY ([EmployeeTypeID]) REFERENCES [dbo].[Employee_Type] ([Id])
+);
+
+
+
+
+
+
+
+
