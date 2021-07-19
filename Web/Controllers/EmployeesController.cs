@@ -51,10 +51,19 @@ namespace Web.Controllers
         public ActionResult BuildSystem(int? employeeID)
         {
             Employee employee = db.Employees.Find(employeeID);
-            if (employee.ComputerDetails.Contains("Laptop"))
-                return View("BuildLaptop", employeeID);
+            if(!string.IsNullOrEmpty(employee.SystemConfigurationDetails))
+            {
+                ViewBag.Error = "Details already filled";
+                var employees = db.Employees.Include(e => e.Employee_Type);
+                return View("Index", employees.ToList());
+            }
             else
-                return View("BuildDesktop", employeeID);
+            {
+                if (employee.ComputerDetails.Contains("Laptop"))
+                    return View("BuildLaptop", employeeID);
+                else
+                    return View("BuildDesktop", employeeID);
+            }
         }
 
         [HttpPost]

@@ -2,12 +2,25 @@
 
 @{
     ViewBag.Title = "Index";
+    string Error = String.Empty;
+    if(ViewBag.Error==null)
+    {
+        Error = "";
+
+    }
+    else
+    {
+        Error = ViewBag.Error;
+    }
 }
 
 <h2>Index</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
+</p>
+<p>
+    @Error
 </p>
 <table class="table">
     <tr>

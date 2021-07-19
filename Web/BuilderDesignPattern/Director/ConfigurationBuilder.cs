@@ -18,5 +18,6 @@ namespace Web.BuilderDesignPattern.Director
             systembuilder.AddKeyBoard(collection["Keyboard"]);
             systembuilder.AddTouchScreen(collection["TouchScreen"]);
         }
+        // systembuilder can either be DesktopBuilder/LaptopBuilder
     }
 }
